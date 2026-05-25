@@ -1890,13 +1890,15 @@
       answers[key] = inp ? inp.value : '';
     }
 
-    // Submit to Netlify
-    const formData = new FormData();
-    formData.append('form-name', 'la-survey');
-    Object.entries(answers).forEach(([k, v]) => formData.append(k, v));
-
+    // Submit to Google Sheets via Apps Script
+    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxa0aQbug5lyy7px_l_mIkJHbsGnZnq_PEmQKiYiHTZnSZDgOgUgv-EpzPJaHGzwra-eg/exec';
     try {
-      await fetch('/', { method: 'POST', body: formData });
+      await fetch(SCRIPT_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(answers)
+      });
     } catch(e) {}
 
     current = slides.length - 1;
