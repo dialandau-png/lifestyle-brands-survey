@@ -2555,10 +2555,13 @@
         } else if (type === 'multi') {
           const sel = [...slide.querySelectorAll('.opt-btn.selected')].map(b => b.textContent);
           answers[key] = sel.join(', ');
-        } else {
-          const sel = slide.querySelector('.opt-btn.selected');
-          answers[key] = sel ? sel.textContent : '';
-        }
+      } else if (key === 'state') {
+              const inp = document.getElementById('state-input');
+              answers[key] = inp ? inp.value.trim() : '';
+            } else {
+              const sel = slide.querySelector('.opt-btn.selected');
+              answers[key] = sel ? sel.textContent : '';
+            }
       }
       current++;
       showSlide(current);
