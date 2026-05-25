@@ -1881,26 +1881,27 @@
     }
   }
 
+  const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbymY41oCSl2V_gUXz_ojsiVFk8X-eK-WpTruo22NsqFM06hjO2FZI-xXcPnTQgEKaU5OA/exec';
+  const SESSION_ID = 'sess_' + Date.now() + '_' + Math.random().toString(36).slice(2, 8);
+
+  function sendToSheets(data) {
+    const payload = Object.assign({ session_id: SESSION_ID }, data);
+    fetch(SCRIPT_URL, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    }).catch(function() {});
+  }
+
   async function submitSurvey() {
-    // Save last answer
     const slide = slides[current];
     const key = slide.dataset.key;
     if (key) {
       const inp = slide.querySelector('.open-input');
       answers[key] = inp ? inp.value : '';
+      sendToSheets({ [key]: answers[key] });
     }
-
-    // Submit to Google Sheets via Apps Script
-    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxa0aQbug5lyy7px_l_mIkJHbsGnZnq_PEmQKiYiHTZnSZDgOgUgv-EpzPJaHGzwra-eg/exec';
-    try {
-      await fetch(SCRIPT_URL, {
-        method: 'POST',
-        mode: 'no-cors',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(answers)
-      });
-    } catch(e) {}
-
     current = slides.length - 1;
     showSlide(current);
   }
@@ -2006,7 +2007,6 @@
 
   goNext = function() {
     const slide = slides[current];
-    // Validate sliders first
     if (slide.dataset.type === 'sliders') {
       const ranges = slide.querySelectorAll('input[type=range]');
       const allFilled = [...ranges].every(r => parseInt(r.value) > 0);
@@ -2019,6 +2019,7 @@
         return label + ': ' + (el ? el.value : 0) + '%';
       });
       answers[slide.dataset.key] = parts.join(', ');
+      sendToSheets({ [slide.dataset.key]: answers[slide.dataset.key] });
       hideValidation();
       current++;
       while (current < slides.length && slides[current].dataset.skipMale && answers['gender'] === 'Male') {
@@ -2027,14 +2028,12 @@
       showSlide(current);
       return;
     }
-    // Validate before proceeding
     if (!isAnswered(slide)) {
       showValidation();
       return;
     }
     hideValidation();
 
-    // Save answer normally first
     const key = slide.dataset.key;
     if (key) {
       const type = slide.dataset.type;
@@ -2046,9 +2045,15 @@
         answers[key] = sel.join(', ');
       } else {
         const sel = slide.querySelector('.opt-btn.selected');
-        answers[key] = sel ? sel.textContent : '';
+        if (sel && sel.id === 'other-btn') {
+          const otherVal = document.getElementById('other-industry-input').value.trim();
+          answers[key] = otherVal ? 'Other: ' + otherVal : 'Other';
+        } else {
+          answers[key] = sel ? sel.textContent : '';
+        }
       }
       if (key === 'gender') answers['gender'] = answers[key];
+      sendToSheets({ [key]: answers[key] });
     }
     current++;
     while (current < slides.length && slides[current].dataset.skipMale && answers['gender'] === 'Male') {
