@@ -6715,14 +6715,29 @@
       }
       const SCRIPT_URL =
         "https://script.google.com/macros/s/AKfycbymY41oCSl2V_gUXz_ojsiVFk8X-eK-WpTruo22NsqFM06hjO2FZI-xXcPnTQgEKaU5OA/exec";
-      const SESSION_ID =
-        "sess_" + Date.now() + "_" + Math.random().toString(36).slice(2, 8);
-      function sendToSheets(data) {
-        const payload = Object.assign({ session_id: SESSION_ID }, answers, data);
-        fetch(SCRIPT_URL, {
+      const SESSION_STORAGE_KEY = "la_survey_session_id";
+      const SESSION_ID = (() => {
+        const id =
+          "sess_" + Date.now() + "_" + Math.random().toString(36).slice(2, 8);
+        try {
+          const saved = sessionStorage.getItem(SESSION_STORAGE_KEY);
+          if (saved) return saved;
+          sessionStorage.setItem(SESSION_STORAGE_KEY, id);
+        } catch (e) {}
+        return id;
+      })();
+      function sendToSheets(data, options = {}) {
+        const includeAnswers = options.includeAnswers !== false;
+        const payload = Object.assign(
+          { session_id: SESSION_ID },
+          includeAnswers ? answers : {},
+          data,
+        );
+        return fetch(SCRIPT_URL, {
           method: "POST",
           mode: "no-cors",
-          headers: { "Content-Type": "application/json" },
+          keepalive: true,
+          headers: { "Content-Type": "text/plain;charset=UTF-8" },
           body: JSON.stringify(payload),
         }).catch(function () {});
       }
@@ -7150,7 +7165,13 @@
         }
         const email = input.value.trim();
         answers.email = email;
-        sendToSheets({ email });
+        answers.Email = email;
+        const submittedAt = new Date().toISOString();
+        sendToSheets({ email, Email: email, email_submitted_at: submittedAt });
+        sendToSheets(
+          { Email: email, email_submitted_at: submittedAt },
+          { includeAnswers: false },
+        );
         // Hide the whole input row, show thanks
         const row = document.getElementById('email-row');
         if (row) row.style.display = 'none';
