@@ -6718,7 +6718,7 @@
       const SESSION_ID =
         "sess_" + Date.now() + "_" + Math.random().toString(36).slice(2, 8);
       function sendToSheets(data) {
-        const payload = Object.assign({ session_id: SESSION_ID }, data);
+        const payload = Object.assign({ session_id: SESSION_ID }, answers, data);
         fetch(SCRIPT_URL, {
           method: "POST",
           mode: "no-cors",
@@ -7149,14 +7149,8 @@
           return;
         }
         const email = input.value.trim();
-        // Send to Google Sheets
-        const payload = { session_id: SESSION_ID, email: email };
-        fetch(SCRIPT_URL, {
-          method: 'POST',
-          mode: 'no-cors',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(payload)
-        }).catch(function() {});
+        answers.email = email;
+        sendToSheets({ email });
         // Hide the whole input row, show thanks
         const row = document.getElementById('email-row');
         if (row) row.style.display = 'none';
