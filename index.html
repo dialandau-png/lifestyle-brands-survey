@@ -1839,8 +1839,11 @@
           const sel = [...slide.querySelectorAll('.opt-btn.selected')].map(b => b.textContent);
           answers[key] = sel.join(', ');
         } else if (key === 'state') {
-          const inp = document.getElementById('state-input');
-          answers[key] = inp ? inp.value.trim() : '';
+          // answers['state'] already set by selectState()
+          if (!answers[key]) {
+            const inp = document.getElementById('state-input');
+            answers[key] = inp ? inp.value.trim() : '';
+          }
         } else {
           const sel = slide.querySelector('.opt-btn.selected');
           answers[key] = sel ? sel.textContent : '';
@@ -1936,6 +1939,7 @@
     document.getElementById('state-input').value = val;
     document.getElementById('state-dropdown').style.display = 'none';
     answers['state'] = val;
+    sendToSheets({ state: val });
   }
 
   const sliderKeys = { local: 'Small local stores', mall: 'Brand stores in malls', web: 'Websites', app: 'Apps', ig: 'Instagram', tt: 'TikTok' };
