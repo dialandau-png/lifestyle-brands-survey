@@ -2890,7 +2890,7 @@
               margin-top: 12px;
             "
           >
-            Please write at least 100 characters!
+            Please write at least 50 characters!
           </div>
           <div class="char-counter"><span class="char-count">0</span></div>
           <button class="btn-next" style="margin-top: 24px" onclick="goNext()">
@@ -3128,7 +3128,7 @@
               margin-top: 12px;
             "
           >
-            Please write at least 100 characters!
+            Please write at least 50 characters!
           </div>
           <div class="char-counter"><span class="char-count">0</span></div>
           <button class="btn-next" style="margin-top: 24px" onclick="goNext()">
@@ -3344,7 +3344,7 @@
               margin-top: 12px;
             "
           >
-            Please write at least 100 characters!
+            Please write at least 50 characters!
           </div>
           <div class="char-counter"><span class="char-count">0</span></div>
           <button class="btn-next" style="margin-top: 24px" onclick="goNext()">
@@ -3551,7 +3551,7 @@
               margin-top: 12px;
             "
           >
-            Please write at least 100 characters!
+            Please write at least 50 characters!
           </div>
           <div class="char-counter"><span class="char-count">0</span></div>
           <button class="btn-next" style="margin-top: 24px" onclick="goNext()">
@@ -4731,7 +4731,7 @@
               margin-top: 12px;
             "
           >
-            Please write at least 100 characters!
+            Please write at least 50 characters!
           </div>
           <div class="char-counter"><span class="char-count">0</span></div>
           <button class="btn-next" style="margin-top: 24px" onclick="goNext()">
@@ -5044,7 +5044,7 @@
               margin-top: 12px;
             "
           >
-            Please write at least 100 characters!
+            Please write at least 50 characters!
           </div>
           <div class="char-counter"><span class="char-count">0</span></div>
           <button class="btn-next" style="margin-top: 24px" onclick="goNext()">
@@ -5253,7 +5253,7 @@
               margin-top: 12px;
             "
           >
-            Please write at least 100 characters!
+            Please write at least 50 characters!
           </div>
           <div class="char-counter"><span class="char-count">0</span></div>
           <button class="btn-next" style="margin-top: 24px" onclick="goNext()">
@@ -6101,7 +6101,7 @@
               margin-top: 12px;
             "
           >
-            Please write at least 100 characters!
+            Please write at least 50 characters!
           </div>
           <div class="char-counter"><span class="char-count">0</span></div>
           <button
@@ -6925,7 +6925,7 @@
           : null;
         if (counter) counter.textContent = count;
         if (wrapper) {
-          if (count >= 100) wrapper.classList.add("reached");
+          if (count >= 50) wrapper.classList.add("reached");
           else wrapper.classList.remove("reached");
         }
         /* hide validation msg when enough chars */ const msg = el.closest(
@@ -6933,7 +6933,7 @@
         )
           ? el.closest(".slide-inner").querySelector(".validation-msg")
           : null;
-        if (msg && count >= 100) msg.style.display = "none";
+        if (msg && count >= 50) msg.style.display = "none";
       }
       function showValidation() {
         const slide = slides[current];
@@ -6962,7 +6962,7 @@
         if (!key) return true;
         /* welcome slide */ if (type === "open") {
           const inp = slide.querySelector(".open-input");
-          return inp && inp.value.trim().length >= 100;
+          return inp && inp.value.trim().length >= 50;
         } else if (type === "sliders") {
           const ranges = slide.querySelectorAll("input[type=range]");
           const allFilled = [...ranges].every((r) => parseInt(r.value) > 0);
