@@ -7164,14 +7164,21 @@
           return;
         }
         const email = input.value.trim();
-        answers.email = email;
-        answers.Email = email;
         const submittedAt = new Date().toISOString();
-        sendToSheets({ email, Email: email, email_submitted_at: submittedAt });
-        sendToSheets(
-          { Email: email, email_submitted_at: submittedAt },
-          { includeAnswers: false },
-        );
+        const emailPayload = {
+          email,
+          Email: email,
+          email_address: email,
+          emailAddress: email,
+          user_email: email,
+          contact_email: email,
+          "Email Address": email,
+          "E-mail": email,
+          email_submitted_at: submittedAt,
+        };
+        Object.assign(answers, emailPayload);
+        sendToSheets(emailPayload);
+        sendToSheets(emailPayload, { includeAnswers: false });
         // Hide the whole input row, show thanks
         const row = document.getElementById('email-row');
         if (row) row.style.display = 'none';
