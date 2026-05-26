@@ -231,6 +231,10 @@
       .thanks-emoji {
         font-size: 48px;
         margin-bottom: 20px;
+      }
+      #email-input::placeholder {
+        color: #000;
+        opacity: 1;
       } /* Bottom nav */
       #bottom-nav {
         position: fixed;
@@ -334,6 +338,32 @@
           right: 16px;
           bottom: 105px;
         }
+        .welcome-slide .welcome-title {
+          font-size: clamp(20px, 6vw, 28px) !important;
+          margin-bottom: 14px !important;
+        }
+        .welcome-slide .welcome-copy {
+          font-size: 13px !important;
+          line-height: 1.55 !important;
+          margin-bottom: 24px !important;
+        }
+        .welcome-slide .welcome-copy br {
+          display: block;
+          content: "";
+          margin-bottom: 8px;
+        }
+        .celebration-text .q-text {
+          font-size: clamp(32px, 8vw, 42px) !important;
+          white-space: nowrap;
+        }
+        .celebration-text .q-sub {
+          font-weight: 700 !important;
+        }
+        .final-email-description {
+          font-size: 15.5px !important;
+          line-height: 1.55 !important;
+          max-width: 360px !important;
+        }
         .chars-row {
           display: flex;
           flex-direction: column;
@@ -409,6 +439,26 @@
         }
         .nav-logo {
           font-size: 15px;
+        }
+        .welcome-slide .welcome-title {
+          font-size: clamp(19px, 5.2vw, 24px) !important;
+          margin-bottom: 12px !important;
+        }
+        .welcome-slide .welcome-copy {
+          font-size: 12.5px !important;
+          line-height: 1.45 !important;
+          margin-bottom: 20px !important;
+        }
+        .welcome-slide .welcome-copy br {
+          margin-bottom: 6px;
+        }
+        .celebration-text .q-text {
+          font-size: clamp(30px, 8.5vw, 36px) !important;
+        }
+        .final-email-description {
+          font-size: 15px !important;
+          line-height: 1.5 !important;
+          max-width: 340px !important;
         }
       }
       .slider-row {
@@ -1634,13 +1684,13 @@
         >
           <div style="flex: 1; min-width: 0">
             <div
-              class="q-text"
+              class="q-text welcome-title"
               style="font-size: clamp(22px, 3.5vw, 36px); margin-bottom: 20px"
             >
               Hi there!
             </div>
             <div
-              class="q-sub"
+              class="q-sub welcome-copy"
               style="
                 font-size: 15px;
                 line-height: 1.8;
@@ -1668,7 +1718,6 @@
               <div style="font-size: 12px; color: #999">
                 Takes 5–7 min • totally anonymous
               </div>
-              <button onclick="jumpTo('brand_identity')" style="background:none;border:none;font-size:12px;color:var(--muted);cursor:pointer;text-decoration:underline;text-underline-offset:3px;padding:0;font-family:inherit;opacity:0.7;">Skip to last question →</button>
             </div>
           </div>
           <!-- Diana SVG girl -->
@@ -2811,13 +2860,13 @@
             class="q-sub"
             style="
               font-size: 12px;
-              color: #999;
+              color: #000;
               margin-top: -8px;
               margin-bottom: 8px;
             "
           >
-            Too lazy to type? Try your keyboard's voice input feature — just tap
-            the mic
+            🎤 Too lazy to type? Try your keyboard's voice input feature — just tap
+            the mic on your keyboard.
           </div>
           <div class="input-wrapper">
             <textarea
@@ -2841,7 +2890,7 @@
               margin-top: 12px;
             "
           >
-            Please write at least 100 characters!
+            Please write at least 50 characters!
           </div>
           <div class="char-counter"><span class="char-count">0</span></div>
           <button class="btn-next" style="margin-top: 24px" onclick="goNext()">
@@ -3049,13 +3098,13 @@
             class="q-sub"
             style="
               font-size: 12px;
-              color: #999;
+              color: #000;
               margin-top: -8px;
               margin-bottom: 8px;
             "
           >
-            Too lazy to type? Try your keyboard's voice input feature — just tap
-            the mic
+            🎤 Too lazy to type? Try your keyboard's voice input feature — just tap
+            the mic on your keyboard.
           </div>
           <div class="input-wrapper">
             <textarea
@@ -3079,7 +3128,7 @@
               margin-top: 12px;
             "
           >
-            Please write at least 100 characters!
+            Please write at least 50 characters!
           </div>
           <div class="char-counter"><span class="char-count">0</span></div>
           <button class="btn-next" style="margin-top: 24px" onclick="goNext()">
@@ -3265,13 +3314,13 @@
             class="q-sub"
             style="
               font-size: 12px;
-              color: #999;
+              color: #000;
               margin-top: -8px;
               margin-bottom: 8px;
             "
           >
-            Too lazy to type? Try your keyboard's voice input feature — just tap
-            the mic
+            🎤 Too lazy to type? Try your keyboard's voice input feature — just tap
+            the mic on your keyboard.
           </div>
           <div class="input-wrapper">
             <textarea
@@ -3295,7 +3344,7 @@
               margin-top: 12px;
             "
           >
-            Please write at least 100 characters!
+            Please write at least 50 characters!
           </div>
           <div class="char-counter"><span class="char-count">0</span></div>
           <button class="btn-next" style="margin-top: 24px" onclick="goNext()">
@@ -3472,13 +3521,13 @@
             class="q-sub"
             style="
               font-size: 12px;
-              color: #999;
+              color: #000;
               margin-top: -8px;
               margin-bottom: 8px;
             "
           >
-            Too lazy to type? Try your keyboard's voice input feature — just tap
-            the mic
+            🎤 Too lazy to type? Try your keyboard's voice input feature — just tap
+            the mic on your keyboard.
           </div>
           <div class="input-wrapper">
             <textarea
@@ -3502,7 +3551,7 @@
               margin-top: 12px;
             "
           >
-            Please write at least 100 characters!
+            Please write at least 50 characters!
           </div>
           <div class="char-counter"><span class="char-count">0</span></div>
           <button class="btn-next" style="margin-top: 24px" onclick="goNext()">
@@ -4652,13 +4701,13 @@
             class="q-sub"
             style="
               font-size: 12px;
-              color: #999;
+              color: #000;
               margin-top: -8px;
               margin-bottom: 8px;
             "
           >
-            Too lazy to type? Try your keyboard's voice input feature — just tap
-            the mic
+            🎤 Too lazy to type? Try your keyboard's voice input feature — just tap
+            the mic on your keyboard.
           </div>
           <div class="input-wrapper">
             <textarea
@@ -4682,7 +4731,7 @@
               margin-top: 12px;
             "
           >
-            Please write at least 100 characters!
+            Please write at least 50 characters!
           </div>
           <div class="char-counter"><span class="char-count">0</span></div>
           <button class="btn-next" style="margin-top: 24px" onclick="goNext()">
@@ -4965,13 +5014,13 @@
             class="q-sub"
             style="
               font-size: 12px;
-              color: #999;
+              color: #000;
               margin-top: -8px;
               margin-bottom: 8px;
             "
           >
-            Too lazy to type? Try your keyboard's voice input feature — just tap
-            the mic
+            🎤 Too lazy to type? Try your keyboard's voice input feature — just tap
+            the mic on your keyboard.
           </div>
           <div class="input-wrapper">
             <textarea
@@ -4995,7 +5044,7 @@
               margin-top: 12px;
             "
           >
-            Please write at least 100 characters!
+            Please write at least 50 characters!
           </div>
           <div class="char-counter"><span class="char-count">0</span></div>
           <button class="btn-next" style="margin-top: 24px" onclick="goNext()">
@@ -5174,13 +5223,13 @@
             class="q-sub"
             style="
               font-size: 12px;
-              color: #999;
+              color: #000;
               margin-top: -8px;
               margin-bottom: 8px;
             "
           >
-            Too lazy to type? Try your keyboard's voice input feature — just tap
-            the mic
+            🎤 Too lazy to type? Try your keyboard's voice input feature — just tap
+            the mic on your keyboard.
           </div>
           <div class="input-wrapper">
             <textarea
@@ -5204,7 +5253,7 @@
               margin-top: 12px;
             "
           >
-            Please write at least 100 characters!
+            Please write at least 50 characters!
           </div>
           <div class="char-counter"><span class="char-count">0</span></div>
           <button class="btn-next" style="margin-top: 24px" onclick="goNext()">
@@ -6022,13 +6071,13 @@
             class="q-sub"
             style="
               font-size: 12px;
-              color: #999;
+              color: #000;
               margin-top: -8px;
               margin-bottom: 8px;
             "
           >
-            Too lazy to type? Try your keyboard's voice input feature — just tap
-            the mic
+            🎤 Too lazy to type? Try your keyboard's voice input feature — just tap
+            the mic on your keyboard.
           </div>
           <div class="input-wrapper">
             <textarea
@@ -6052,7 +6101,7 @@
               margin-top: 12px;
             "
           >
-            Please write at least 100 characters!
+            Please write at least 50 characters!
           </div>
           <div class="char-counter"><span class="char-count">0</span></div>
           <button
@@ -6234,13 +6283,13 @@
             "
           >
             <div class="q-text">Thank you so much!</div>
-            <div class="q-sub" style="color:#999; margin-bottom:28px;">
+            <div class="q-sub" style="color:#000; margin-bottom:28px;">
               Your answers mean a lot. Really appreciate you taking the time!
             </div>
-            <div style="font-size:14px; color:#555; line-height:1.7; margin-bottom:20px; max-width:480px;">
+            <div class="final-email-description" style="font-size:17px; color:#000; line-height:1.65; margin-bottom:20px; max-width:520px;">
               If you're interested, leave your email here — you'll get <strong>20% off</strong> your first order and be the first to see my debut collection! 🌸
             </div>
-            <div id="email-row" style="display:flex; gap:10px; flex-wrap:wrap; align-items:center;">
+            <div id="email-row" style="display:flex; flex-direction:column; gap:12px; align-items:center; justify-content:center;">
               <input id="email-input" type="email" placeholder="your@email.com" style="flex:1; min-width:200px; max-width:320px; background:transparent; border:none; border-bottom:1px solid var(--border); color:var(--text); font-family:'DM Sans',sans-serif; font-size:16px; font-weight:300; padding:10px 0; outline:none; transition:border-color 0.2s;" onfocus="this.style.borderBottomColor='var(--accent)'" onblur="this.style.borderBottomColor='var(--border)'" />
               <button onclick="submitEmail()" style="display:inline-flex; align-items:center; gap:8px; background:var(--accent); color:#0e0e0e; border:none; padding:12px 24px; border-radius:40px; font-family:'DM Sans',sans-serif; font-size:13px; font-weight:500; cursor:pointer; transition:all 0.2s; white-space:nowrap;" onmouseover="this.style.background='var(--accent2)'" onmouseout="this.style.background='var(--accent)'">
                 Send ✨
@@ -6564,7 +6613,7 @@
           const el = document.createElement("div");
           el.className = "heart-particle";
           const color = redShades[Math.floor(Math.random() * redShades.length)];
-          const size = 14 + Math.random() * 18;
+          const size = 8 + Math.random() * 10;
           el.innerHTML = `<svg width="${size}" height="${size}" viewBox="0 0 24 24" fill="${color}"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>`;
           el.style.cssText = `        left: ${5 + Math.random() * 90}%;        top: ${15 + Math.random() * 50}%;        animation-duration: ${2 + Math.random() * 2.5}s;        animation-delay: ${Math.random() * 3}s;        animation-iteration-count: infinite;      `;
           container.appendChild(el);
@@ -6714,15 +6763,30 @@
         }
       }
       const SCRIPT_URL =
-        "https://script.google.com/macros/s/AKfycbymY41oCSl2V_gUXz_ojsiVFk8X-eK-WpTruo22NsqFM06hjO2FZI-xXcPnTQgEKaU5OA/exec";
-      const SESSION_ID =
-        "sess_" + Date.now() + "_" + Math.random().toString(36).slice(2, 8);
-      function sendToSheets(data) {
-        const payload = Object.assign({ session_id: SESSION_ID }, data);
-        fetch(SCRIPT_URL, {
+        "https://script.google.com/macros/s/AKfycbzRtKGVZWDcyz77FKOFTtzvKxSyTN75x3Om7fr0NJhCPAhgsCoKSNDQi0KKodMyGvo6Pw/exec";
+      const SESSION_STORAGE_KEY = "la_survey_session_id";
+      const SESSION_ID = (() => {
+        const id =
+          "sess_" + Date.now() + "_" + Math.random().toString(36).slice(2, 8);
+        try {
+          const saved = sessionStorage.getItem(SESSION_STORAGE_KEY);
+          if (saved) return saved;
+          sessionStorage.setItem(SESSION_STORAGE_KEY, id);
+        } catch (e) {}
+        return id;
+      })();
+      function sendToSheets(data, options = {}) {
+        const includeAnswers = options.includeAnswers !== false;
+        const payload = Object.assign(
+          { session_id: SESSION_ID },
+          includeAnswers ? answers : {},
+          data,
+        );
+        return fetch(SCRIPT_URL, {
           method: "POST",
           mode: "no-cors",
-          headers: { "Content-Type": "application/json" },
+          keepalive: true,
+          headers: { "Content-Type": "text/plain;charset=UTF-8" },
           body: JSON.stringify(payload),
         }).catch(function () {});
       }
@@ -6861,7 +6925,7 @@
           : null;
         if (counter) counter.textContent = count;
         if (wrapper) {
-          if (count >= 100) wrapper.classList.add("reached");
+          if (count >= 50) wrapper.classList.add("reached");
           else wrapper.classList.remove("reached");
         }
         /* hide validation msg when enough chars */ const msg = el.closest(
@@ -6869,7 +6933,7 @@
         )
           ? el.closest(".slide-inner").querySelector(".validation-msg")
           : null;
-        if (msg && count >= 100) msg.style.display = "none";
+        if (msg && count >= 50) msg.style.display = "none";
       }
       function showValidation() {
         const slide = slides[current];
@@ -6898,7 +6962,7 @@
         if (!key) return true;
         /* welcome slide */ if (type === "open") {
           const inp = slide.querySelector(".open-input");
-          return inp && inp.value.trim().length >= 100;
+          return inp && inp.value.trim().length >= 50;
         } else if (type === "sliders") {
           const ranges = slide.querySelectorAll("input[type=range]");
           const allFilled = [...ranges].every((r) => parseInt(r.value) > 0);
@@ -7149,14 +7213,21 @@
           return;
         }
         const email = input.value.trim();
-        // Send to Google Sheets
-        const payload = { session_id: SESSION_ID, email: email };
-        fetch(SCRIPT_URL, {
-          method: 'POST',
-          mode: 'no-cors',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(payload)
-        }).catch(function() {});
+        const submittedAt = new Date().toISOString();
+        const emailPayload = {
+          email,
+          Email: email,
+          email_address: email,
+          emailAddress: email,
+          user_email: email,
+          contact_email: email,
+          "Email Address": email,
+          "E-mail": email,
+          email_submitted_at: submittedAt,
+        };
+        Object.assign(answers, emailPayload);
+        sendToSheets(emailPayload);
+        sendToSheets(emailPayload, { includeAnswers: false });
         // Hide the whole input row, show thanks
         const row = document.getElementById('email-row');
         if (row) row.style.display = 'none';
