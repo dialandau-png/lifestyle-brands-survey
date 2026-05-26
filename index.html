@@ -1606,6 +1606,10 @@
           transform: rotate(-7deg) translateY(-3px);
         }
       }
+    @keyframes cheerPop {
+      0% { opacity: 0; transform: scale(0.7) translateY(8px); }
+      100% { opacity: 1; transform: scale(1) translateY(0); }
+    }
     </style>
   </head>
   <body>
@@ -1644,11 +1648,9 @@
                 color: #444;
               "
             >
-              My name is <strong>Diana</strong>, and I'm doing a marketing
-              research for my fashion brand! <br /><br />
+              My name is <strong>Diana</strong>, and I'm doing a marketing Lifestyle &amp; Brands research for my fashion brand! <br /><br />
               All questions are completely anonymous — I promise! <br /><br />
-              I'd be SO grateful for your help and support! Every single answer
-              means the world to me!
+              I'd be SO grateful for your help and support! Every single answer means the world to me!
             </div>
             <button class="btn-next" onclick="goNext()">
               Let's go! ✨
@@ -1662,10 +1664,11 @@
                 />
               </svg>
             </button>
-            <div style="margin-top: 12px">
+            <div style="margin-top: 12px; display:flex; align-items:center; gap:16px; flex-wrap:wrap;">
               <div style="font-size: 12px; color: #999">
                 Takes 5–7 min • totally anonymous
               </div>
+              <button onclick="jumpTo('brand_identity')" style="background:none;border:none;font-size:12px;color:var(--muted);cursor:pointer;text-decoration:underline;text-underline-offset:3px;padding:0;font-family:inherit;opacity:0.7;">Skip to last question →</button>
             </div>
           </div>
           <!-- Diana SVG girl -->
@@ -1679,7 +1682,7 @@
           >
             <svg
               style="
-                animation: charFloat 3s ease-in-out infinite;
+                animation: charFloat 1.6s ease-in-out infinite;
                 width: 100%;
                 height: 100%;
               "
@@ -3025,9 +3028,16 @@
         </svg>
       </div>
       <!-- Q6: Location -->
-      <div class="slide" data-index="6" data-type="open" data-key="location">
-        <div class="slide-inner">
+      <div class="slide" data-index="6" data-type="open" data-key="location" onanimationend="" style="position:relative;">
+        <!-- Fireworks canvas -->
+        <canvas id="fireworks-canvas" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0;opacity:0;transition:opacity 0.5s;"></canvas>
+        <div class="slide-inner" style="position:relative;z-index:1;">
           <div class="q-number">09</div>
+          <!-- Motivational message -->
+          <div id="slide9-cheer" style="display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,rgba(201,169,110,0.12),rgba(232,213,176,0.18));border:1px solid rgba(201,169,110,0.35);border-radius:40px;padding:8px 18px;margin-bottom:20px;font-size:13px;color:var(--accent);font-weight:500;letter-spacing:0.01em;animation:cheerPop 0.5s cubic-bezier(0.34,1.56,0.64,1) both;">
+            <span style="font-size:18px;line-height:1;">🎉</span>
+            You're still here — thank you! Just a little more to go!
+          </div>
           <div class="q-text">
             Where do you usually buy groceries — and why?
           </div>
@@ -4482,8 +4492,12 @@
         data-type="single"
         data-key="monthly_clothing"
       >
-        <div class="slide-inner">
+        <canvas id="cake-canvas" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0;opacity:0;transition:opacity 0.5s;"></canvas>
+        <div class="slide-inner" style="position:relative;z-index:1;">
           <div class="q-number">18</div>
+          <div id="slide18-cheer" style="display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,rgba(201,169,110,0.12),rgba(232,213,176,0.18));border:1px solid rgba(201,169,110,0.35);border-radius:40px;padding:8px 18px;margin-bottom:20px;font-size:13px;color:var(--accent);font-weight:500;letter-spacing:0.01em;animation:cheerPop 0.5s cubic-bezier(0.34,1.56,0.64,1) both;">
+            More than halfway there! Just a little more — thank you! 🎉
+          </div>
           <div class="q-text">
             How much do you spend on clothing per month on average?
           </div>
@@ -6220,9 +6234,19 @@
             "
           >
             <div class="q-text">Thank you so much!</div>
-            <div class="q-sub">
-              Your answers mean a lot. Really appreciate you taking the time.
+            <div class="q-sub" style="color:#999; margin-bottom:28px;">
+              Your answers mean a lot. Really appreciate you taking the time!
             </div>
+            <div style="font-size:14px; color:#555; line-height:1.7; margin-bottom:20px; max-width:480px;">
+              If you're interested, leave your email here — you'll get <strong>20% off</strong> your first order and be the first to see my debut collection! 🌸
+            </div>
+            <div style="display:flex; gap:10px; flex-wrap:wrap; align-items:center;">
+              <input id="email-input" type="email" placeholder="your@email.com" style="flex:1; min-width:200px; max-width:320px; background:transparent; border:none; border-bottom:1px solid var(--border); color:var(--text); font-family:'DM Sans',sans-serif; font-size:16px; font-weight:300; padding:10px 0; outline:none; transition:border-color 0.2s;" onfocus="this.style.borderBottomColor='var(--accent)'" onblur="this.style.borderBottomColor='var(--border)'" />
+              <button onclick="submitEmail()" style="display:inline-flex; align-items:center; gap:8px; background:var(--accent); color:#0e0e0e; border:none; padding:12px 24px; border-radius:40px; font-family:'DM Sans',sans-serif; font-size:13px; font-weight:500; cursor:pointer; transition:all 0.2s; white-space:nowrap;" onmouseover="this.style.background='var(--accent2)'" onmouseout="this.style.background='var(--accent)'">
+                Send ✨
+              </button>
+            </div>
+            <div id="email-thanks" style="display:none; margin-top:14px; font-size:13px; color:var(--accent);">💕 Thank you! We'll be in touch soon.</div>
           </div>
           <!-- Characters row at bottom -->
           <div class="chars-row">
@@ -6556,6 +6580,14 @@
           slides[idx].dataset.index === "22"
         ) {
           setTimeout(launchCelebration, 300);
+        }
+        /* Fireworks on slide 9 (data-index="6") */
+        if (slides[idx] && slides[idx].dataset.index === "6") {
+          setTimeout(launchFireworks, 200);
+        }
+        /* Cake fireworks on slide 18 (data-index="12") */
+        if (slides[idx] && slides[idx].dataset.index === "12") {
+          setTimeout(launchCakeFireworks, 200);
         }
         const inp = slides[idx].querySelector(".open-input");
         if (inp) setTimeout(() => inp.focus(), 500);
@@ -6945,7 +6977,184 @@
           showSlide(idx);
         }
       }
-      showSlide(0);
+      // ── Fireworks for slide 9 ─────────────────────────────────────────
+      function launchFireworks() {
+        const canvas = document.getElementById('fireworks-canvas');
+        if (!canvas) return;
+        const ctx = canvas.getContext('2d');
+
+        // Size canvas to parent
+        const parent = canvas.parentElement;
+        canvas.width = parent.offsetWidth;
+        canvas.height = parent.offsetHeight;
+        canvas.style.opacity = '1';
+
+        const particles = [];
+        const COLORS = ['#c9a96e','#ff6b9d','#7ec8a0','#6aa0d4','#f9c5d1','#ffd700','#ff6b6b','#b090d0'];
+
+        function createBurst(x, y) {
+          const color = COLORS[Math.floor(Math.random() * COLORS.length)];
+          const count = 28 + Math.floor(Math.random() * 16);
+          for (let i = 0; i < count; i++) {
+            const angle = (Math.PI * 2 * i) / count + (Math.random() - 0.5) * 0.3;
+            const speed = 2.5 + Math.random() * 3.5;
+            particles.push({
+              x, y,
+              vx: Math.cos(angle) * speed,
+              vy: Math.sin(angle) * speed,
+              alpha: 1,
+              color,
+              radius: 2 + Math.random() * 2.5,
+              gravity: 0.06 + Math.random() * 0.04,
+              decay: 0.013 + Math.random() * 0.008,
+            });
+          }
+        }
+
+        // Launch 5 bursts at staggered times
+        const positions = [
+          [0.25, 0.3],[0.75, 0.25],[0.5, 0.4],[0.2, 0.55],[0.8, 0.45]
+        ];
+        positions.forEach(([rx, ry], i) => {
+          setTimeout(() => createBurst(canvas.width * rx, canvas.height * ry), i * 220);
+        });
+
+        let frame;
+        let elapsed = 0;
+        function animate() {
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+          for (let i = particles.length - 1; i >= 0; i--) {
+            const p = particles[i];
+            p.x += p.vx;
+            p.y += p.vy;
+            p.vy += p.gravity;
+            p.vx *= 0.98;
+            p.alpha -= p.decay;
+            if (p.alpha <= 0) { particles.splice(i, 1); continue; }
+            ctx.globalAlpha = p.alpha;
+            ctx.fillStyle = p.color;
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+            ctx.fill();
+          }
+          ctx.globalAlpha = 1;
+          elapsed++;
+          if (elapsed < 180 || particles.length > 0) {
+            frame = requestAnimationFrame(animate);
+          } else {
+            canvas.style.opacity = '0';
+          }
+        }
+        frame = requestAnimationFrame(animate);
+
+        // Reset cheer badge animation so it re-triggers
+        const cheer = document.getElementById('slide9-cheer');
+        if (cheer) {
+          cheer.style.animation = 'none';
+          void cheer.offsetWidth;
+          cheer.style.animation = 'cheerPop 0.5s cubic-bezier(0.34,1.56,0.64,1) both';
+        }
+      }
+      // ─────────────────────────────────────────────────────────────────
+
+      // ── Cake fireworks for slide 18 ──────────────────────────────────
+      function launchCakeFireworks() {
+        const canvas = document.getElementById('cake-canvas');
+        if (!canvas) return;
+        const ctx = canvas.getContext('2d');
+        const parent = canvas.parentElement;
+        canvas.width = parent.offsetWidth;
+        canvas.height = parent.offsetHeight;
+        canvas.style.opacity = '1';
+
+        const cakeEmojis = ['🎈','🎈','🎈','🎉','🎈','🎈','🎉','🎈'];
+        const particles = [];
+
+        function createCakeBurst(x, y) {
+          const count = 14 + Math.floor(Math.random() * 8);
+          for (let i = 0; i < count; i++) {
+            const angle = (Math.PI * 2 * i) / count + (Math.random() - 0.5) * 0.4;
+            const speed = 2 + Math.random() * 3;
+            particles.push({
+              x, y,
+              vx: Math.cos(angle) * speed,
+              vy: Math.sin(angle) * speed - 1,
+              alpha: 1,
+              emoji: cakeEmojis[Math.floor(Math.random() * cakeEmojis.length)],
+              size: 14 + Math.random() * 12,
+              gravity: 0.08 + Math.random() * 0.04,
+              decay: 0.014 + Math.random() * 0.007,
+              rotation: Math.random() * Math.PI * 2,
+              rotSpeed: (Math.random() - 0.5) * 0.15,
+            });
+          }
+        }
+
+        // 5 bursts staggered
+        const positions = [
+          [0.25, 0.28],[0.75, 0.22],[0.5, 0.38],[0.18, 0.5],[0.82, 0.42]
+        ];
+        positions.forEach(([rx, ry], i) => {
+          setTimeout(() => createCakeBurst(canvas.width * rx, canvas.height * ry), i * 200);
+        });
+
+        let elapsed = 0;
+        let frame;
+        function animate() {
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+          for (let i = particles.length - 1; i >= 0; i--) {
+            const p = particles[i];
+            p.x += p.vx;
+            p.y += p.vy;
+            p.vy += p.gravity;
+            p.vx *= 0.97;
+            p.alpha -= p.decay;
+            p.rotation += p.rotSpeed;
+            if (p.alpha <= 0) { particles.splice(i, 1); continue; }
+            ctx.save();
+            ctx.globalAlpha = p.alpha;
+            ctx.translate(p.x, p.y);
+            ctx.rotate(p.rotation);
+            ctx.font = p.size + 'px serif';
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillText(p.emoji, 0, 0);
+            ctx.restore();
+          }
+          elapsed++;
+          if (elapsed < 200 || particles.length > 0) {
+            frame = requestAnimationFrame(animate);
+          } else {
+            canvas.style.opacity = '0';
+          }
+        }
+        frame = requestAnimationFrame(animate);
+
+        // Re-trigger cheer badge animation
+        const cheer = document.getElementById('slide18-cheer');
+        if (cheer) {
+          cheer.style.animation = 'none';
+          void cheer.offsetWidth;
+          cheer.style.animation = 'cheerPop 0.5s cubic-bezier(0.34,1.56,0.64,1) both';
+        }
+      }
+      // ─────────────────────────────────────────────────────────────────
+
+      function submitEmail() {
+        const input = document.getElementById('email-input');
+        const thanks = document.getElementById('email-thanks');
+        if (!input || !input.value.includes('@')) {
+          input.style.borderBottomColor = '#e05050';
+          setTimeout(() => input.style.borderBottomColor = 'var(--border)', 1200);
+          return;
+        }
+        sendToSheets({ email: input.value.trim() });
+        input.style.display = 'none';
+        input.nextElementSibling.style.display = 'none';
+        thanks.style.display = 'block';
+      }
+
+            showSlide(0);
     </script>
   </body>
 </html>
