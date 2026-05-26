@@ -6240,7 +6240,7 @@
             <div style="font-size:14px; color:#555; line-height:1.7; margin-bottom:20px; max-width:480px;">
               If you're interested, leave your email here — you'll get <strong>20% off</strong> your first order and be the first to see my debut collection! 🌸
             </div>
-            <div style="display:flex; gap:10px; flex-wrap:wrap; align-items:center;">
+            <div id="email-row" style="display:flex; gap:10px; flex-wrap:wrap; align-items:center;">
               <input id="email-input" type="email" placeholder="your@email.com" style="flex:1; min-width:200px; max-width:320px; background:transparent; border:none; border-bottom:1px solid var(--border); color:var(--text); font-family:'DM Sans',sans-serif; font-size:16px; font-weight:300; padding:10px 0; outline:none; transition:border-color 0.2s;" onfocus="this.style.borderBottomColor='var(--accent)'" onblur="this.style.borderBottomColor='var(--border)'" />
               <button onclick="submitEmail()" style="display:inline-flex; align-items:center; gap:8px; background:var(--accent); color:#0e0e0e; border:none; padding:12px 24px; border-radius:40px; font-family:'DM Sans',sans-serif; font-size:13px; font-weight:500; cursor:pointer; transition:all 0.2s; white-space:nowrap;" onmouseover="this.style.background='var(--accent2)'" onmouseout="this.style.background='var(--accent)'">
                 Send ✨
@@ -7148,9 +7148,18 @@
           setTimeout(() => input.style.borderBottomColor = 'var(--border)', 1200);
           return;
         }
-        sendToSheets({ email: input.value.trim() });
-        input.style.display = 'none';
-        input.nextElementSibling.style.display = 'none';
+        const email = input.value.trim();
+        // Send to Google Sheets
+        const payload = { session_id: SESSION_ID, email: email };
+        fetch(SCRIPT_URL, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        }).catch(function() {});
+        // Hide the whole input row, show thanks
+        const row = document.getElementById('email-row');
+        if (row) row.style.display = 'none';
         thanks.style.display = 'block';
       }
 
